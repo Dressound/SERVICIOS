@@ -225,13 +225,12 @@ body {
 
 /* Hero Section - ULTRA FLUIDO */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    padding: 0 5%; /* Padding lateral en porcentaje para que se adapte */
+    box-sizing: border-box;
 }
 
 .hero::before {
@@ -247,6 +246,25 @@ body {
     z-index: 1;
     animation: heroBgFlow 20s ease infinite;
 }
+.hero-content h1 br {
+    display: block;
+    content: "";
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.hero-content h1 {
+    /* Mínimo 2rem, preferido 8vw (8% del ancho de pantalla), máximo 4.5rem */
+    font-size: clamp(2rem, 8vw, 4.5rem); 
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 900px; /* Evita que en pantallas gigantes se estire demasiado */
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word; /* Fuerza el salto de palabra si es muy larga */
+    overflow-wrap: break-word;
+}
 
 .hero-content {
     max-width: 900px;
@@ -256,6 +274,8 @@ body {
     transform: translateY(40px);
     opacity: 0;
     animation: heroSlideIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
+    width: 100%;
+    text-align: center;
 }
 
 .hero-badge {
@@ -382,6 +402,14 @@ section {
     background-size: 300% 300%;
     animation: gradientFlow 3s ease infinite;
     position: relative;
+}
+
+.text-gradient {
+    background: linear-gradient(45deg, var(--accent), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
 }
 
 .section-title::after {
