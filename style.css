@@ -13,6 +13,25 @@
     --glass: rgba(255, 255, 255, 0.08);
     --glass-hover: rgba(255, 255, 255, 0.15);
 }
+/* Mejora el rendimiento visual */
+.media-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000; /* Fondo negro mientras carga */
+    aspect-ratio: 16 / 9; /* Mantiene el tamaño constante */
+}
+
+.project-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-video {
+    transform: scale(1.05); /* Efecto zoom suave */
+}
 
 html {
     scroll-behavior: smooth;

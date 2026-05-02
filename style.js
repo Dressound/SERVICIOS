@@ -1,4 +1,3 @@
-
 class Cursor {
     constructor() {
         this.cursor = document.querySelector('.cursor');
@@ -7,30 +6,20 @@ class Cursor {
         this.mouseY = 0;
         this.cursorX = 0;
         this.cursorY = 0;
-        this.isHoveringLink = false;
         this.init();
     }
 
     init() {
-        document.addEventListener('mousemove', (e) => this.updateMouse(e));
-        document.querySelectorAll('a, .project-card, .skill-tag, .contact-item').forEach(el => {
-            el.addEventListener('mouseenter', () => this.grow());
-            el.addEventListener('mouseleave', () => this.shrink());
+        document.addEventListener('mousemove', (e) => {
+            this.mouseX = e.clientX;
+            this.mouseY = e.clientY;
+        });
+
+        document.querySelectorAll('a, .project-card, .skill-tag, .contact-item, .cta-button').forEach(el => {
+            el.addEventListener('mouseenter', () => this.follower.classList.add('grow'));
+            el.addEventListener('mouseleave', () => this.follower.classList.remove('grow'));
         });
         this.animate();
-    }
-
-    updateMouse(e) {
-        this.mouseX = e.clientX;
-        this.mouseY = e.clientY;
-    }
-
-    grow() {
-        this.follower.classList.add('grow');
-    }
-
-    shrink() {
-        this.follower.classList.remove('grow');
     }
 
     animate() {
@@ -44,61 +33,88 @@ class Cursor {
     }
 }
 
-// Navbar Scroll
 class Navbar {
     constructor() {
         this.navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => this.handleScroll());
-    }
-
-    handleScroll() {
-        if (window.scrollY > 50) {
-            this.navbar.classList.add('scrolled');
-        } else {
-            this.navbar.classList.remove('scrolled');
-        }
-    }
-}
-
-// Scroll Reveal - OPTIMIZADO
-class ScrollReveal {
-    constructor() {
-        this.observer = new IntersectionObserver(this.handleIntersect, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -100px 0px'
-        });
-        this.init();
-    }
-
-    init() {
-        document.querySelectorAll('.reveal').forEach(el => {
-            this.observer.observe(el);
-        });
-    }
-
-    handleIntersect(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                entry.target.style.transitionDelay = '0.1s';
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                this.navbar.classList.add('scrolled');
+            } else {
+                this.navbar.classList.remove('scrolled');
             }
         });
     }
 }
 
-// Smooth Scroll & Active Nav
+class ScrollReveal {
+    constructor() {
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+        
+        document.querySelectorAll('.reveal').forEach(el => this.observer.observe(el));
+    }
+}
+
+class VideoHandler {
+    constructor() {
+        this.cards = document.querySelectorAll('.project-card');
+        this.init();
+    }
+
+    init() {
+        this.cards.forEach(card => {
+            const video = card.querySelector('video');
+            if (!video) return;
+
+            // El video solo carga metadatos inicialmente para ahorrar ancho de banda
+            video.preload = "metadata";
+
+            card.addEventListener('mouseenter', () => {
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => { /* Evita error de interrupción */ });
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                video.pause();
+            });
+        });
+    }
+}
+
+class CardTilt {
+    constructor() {
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const rotateX = (e.clientY - rect.top - (rect.height / 2)) / 15;
+                const rotateY = ((rect.width / 2) - (e.clientX - rect.left)) / 15;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
+            });
+        });
+    }
+}
+
 class Navigation {
     constructor() {
+        this.links = document.querySelectorAll('.nav-links a');
+        this.sections = document.querySelectorAll('section');
+        
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
                 e.preventDefault();
                 const target = document.querySelector(anchor.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
             });
         });
 
@@ -106,85 +122,29 @@ class Navigation {
     }
 
     updateActiveNav() {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-links a');
-
         let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (window.scrollY >= sectionTop - 200) {
+        this.sections.forEach(section => {
+            if (window.scrollY >= section.offsetTop - 200) {
                 current = section.getAttribute('id');
             }
         });
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
+        this.links.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
         });
     }
 }
 
-// Parallax Background
-class Parallax {
-    constructor() {
-        window.addEventListener('scroll', () => this.update());
-    }
-
-    update() {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-        }
-    }
-}
-
-// 3D Card Tilt - ULTRA SUAVE
-class CardTilt {
-    constructor() {
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => this.tilt(card, e));
-            card.addEventListener('mouseleave', () => this.resetTilt(card));
-        });
-    }
-
-    tilt(card, e) {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = (y - centerY) / 15;
-        const rotateY = (centerX - x) / 15;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-20px) scale(1.02)`;
-    }
-
-    resetTilt(card) {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
-    }
-}
-
-// Typing Effect
 class TypingEffect {
     constructor() {
-        this.init();
-    }
-
-    init() {
-        const heroTitle = document.querySelector('.hero h1');
-        const text = heroTitle.textContent;
-        heroTitle.textContent = '';
-
+        const title = document.querySelector('.hero h1');
+        if (!title) return;
+        const text = title.innerText;
+        title.innerText = '';
         let i = 0;
         const type = () => {
             if (i < text.length) {
-                heroTitle.textContent += text.charAt(i);
-                i++;
+                title.innerText += text.charAt(i++);
                 setTimeout(type, 80);
             }
         };
@@ -192,31 +152,18 @@ class TypingEffect {
     }
 }
 
-// Initialize Everything
+// Inicialización consolidada
 document.addEventListener('DOMContentLoaded', () => {
     new Cursor();
     new Navbar();
     new ScrollReveal();
     new Navigation();
-    new Parallax();
     new CardTilt();
     new TypingEffect();
+    new VideoHandler();
 });
 
-// Prevent mobile zoom
-document.addEventListener('touchstart', function (event) {
-    if (event.touches.length > 1) {
-        event.preventDefault();
-    }
-});
-
-// Performance optimizations
-let ticking = false;
-function requestTick() {
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            ticking = false;
-        });
-        ticking = true;
-    }
-}
+// Deshabilitar zoom táctil
+document.addEventListener('touchstart', (e) => {
+    if (e.touches.length > 1) e.preventDefault();
+}, { passive: false });
