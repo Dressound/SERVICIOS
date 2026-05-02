@@ -82,65 +82,143 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title reveal">Mis Proyectos Elite</h2>
-            <div class="section-divider reveal"></div>
-            <div class="projects-grid">
+<!-- Seccion de Proyectos con Filtros -->
+<section id="projects">
+    <div class="container">
+        <h2 class="section-title reveal">Mis Proyectos Elite</h2>
+        <div class="section-divider reveal"></div>
 
-                <div class="projects-grid">
-                    <div class="project-card reveal">
-                        <div class="media-wrapper">
-                            <video class="project-video" loop muted playsinline preload="metadata"
-                                poster="img/portafolio 1.png">
-                                <source src="video/PORTAFOLIO/Portafolio.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <h3 class="project-title">AdminPro</h3>
-                        <div class="project-tech">
-                            <span class="tech-tag">React 18</span>
-                            <span class="tech-tag">Chart.js</span>
-                            <span class="tech-tag">Socket.io</span>
-                            <span class="tech-tag">TypeScript</span>
-                        </div>
-                        <p class="project-description">Dashboard SaaS en tiempo real con analíticas avanzadas, drag &
-                            drop y
-                            notificaciones push. 100K+ usuarios/mes.</p>
-                        <div class="project-links">
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Código</a>
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        </div>
-                    </div>
+        <!-- Botones de Filtro -->
+        <div class="project-filters reveal">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="business">Negocios</button>
+            <button class="filter-btn" data-filter="portfolio">Portafolios</button>
+            <button class="filter-btn" data-filter="cv">CV Digital</button>
+        </div>
+
+        <!-- Una sola Grid para todos los proyectos -->
+        <div class="projects-grid">
+            
+            <!-- PROYECTO 1: NEGOCIOS -->
+            <div class="project-card reveal" data-category="business">
+                <div class="media-wrapper">
+                    <video class="project-video" loop muted playsinline preload="metadata"
+                        poster="img/miniaturas/negocios-1.png">
+                        <source src="video/NEGOCIOS/tienda-demo.mp4" type="video/mp4">
+                    </video>
                 </div>
-
-
-                <div class="projects-grid">
-                    <div class="project-card reveal">
-                        <div class="media-wrapper">
-                            <video class="project-video" loop muted playsinline preload="metadata"
-                                poster="img/portafolio 1.png">
-                                <source src="video/PORTAFOLIO/Portafolio.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <h3 class="project-title">AdminPro</h3>
-                        <div class="project-tech">
-                            <span class="tech-tag">React 18</span>
-                            <span class="tech-tag">Chart.js</span>
-                            <span class="tech-tag">Socket.io</span>
-                            <span class="tech-tag">TypeScript</span>
-                        </div>
-                        <p class="project-description">Dashboard SaaS en tiempo real con analíticas avanzadas, drag &
-                            drop y
-                            notificaciones push. 100K+ usuarios/mes.</p>
-                        <div class="project-links">
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> Código</a>
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        </div>
-                    </div>
+                <h3 class="project-title">AdminPro Business</h3>
+                <div class="project-tech">
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">Stripe</span>
                 </div>
-
+                <p class="project-description">Dashboard SaaS corporativo con analíticas avanzadas y gestión de pagos.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Código</a>
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
             </div>
-    </section>
+
+                        <div class="project-card reveal" data-category="business">
+                <div class="media-wrapper">
+                    <video class="project-video" loop muted playsinline preload="metadata"
+                        poster="img/miniaturas/negocios-1.png">
+                        <source src="video/NEGOCIOS/tienda-demo.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="project-title">AdminPro Business</h3>
+                <div class="project-tech">
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">Stripe</span>
+                </div>
+                <p class="project-description">Dashboard SaaS corporativo con analíticas avanzadas y gestión de pagos.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Código</a>
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+
+            <!-- PROYECTO 2: PORTAFOLIOS -->
+            <div class="project-card reveal" data-category="portfolio">
+                <div class="media-wrapper">
+                    <video class="project-video" loop muted playsinline preload="metadata"
+                        poster="img/miniaturas/portafolio-1.png">
+                        <source src="video/PORTAFOLIO/Portafolio.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="project-title">Creative Portfolio</h3>
+                <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Framer Motion</span>
+                </div>
+                <p class="project-description">Diseño inmersivo para creativos con animaciones de alto rendimiento.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Código</a>
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+
+                        <div class="project-card reveal" data-category="portfolio">
+                <div class="media-wrapper">
+                    <video class="project-video" loop muted playsinline preload="metadata"
+                        poster="img/miniaturas/portafolio-1.png">
+                        <source src="video/PORTAFOLIO/Portafolio.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="project-title">Creative Portfolio</h3>
+                <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Framer Motion</span>
+                </div>
+                <p class="project-description">Diseño inmersivo para creativos con animaciones de alto rendimiento.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Código</a>
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+
+            <!-- PROYECTO 3: CV DIGITAL -->
+            <div class="project-card reveal" data-category="cv">
+                <div class="media-wrapper">
+                    <video class="project-video" loop muted playsinline preload="metadata"
+                        poster="img/miniaturas/cv-1.png">
+                        <source src="video/CV/cv-interactivo.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="project-title">Interactive Resume</h3>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML/CSS</span>
+                    <span class="tech-tag">JS</span>
+                </div>
+                <p class="project-description">Hoja de vida interactiva optimizada para procesos de selección tech.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Código</a>
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+
+                        <div class="project-card reveal" data-category="cv">
+                <div class="media-wrapper">
+                    <video class="project-video" loop muted playsinline preload="metadata"
+                        poster="img/miniaturas/cv-1.png">
+                        <source src="video/CV/cv-interactivo.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <h3 class="project-title">Interactive Resume</h3>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML/CSS</span>
+                    <span class="tech-tag">JS</span>
+                </div>
+                <p class="project-description">Hoja de vida interactiva optimizada para procesos de selección tech.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Código</a>
+                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+
+        </div> <!-- Fin de projects-grid -->
+    </div>
+</section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">

@@ -15,7 +15,8 @@ class Cursor {
             this.mouseY = e.clientY;
         });
 
-        document.querySelectorAll('a, .project-card, .skill-tag, .contact-item, .cta-button').forEach(el => {
+        // Agregamos .filter-btn para que el cursor también reaccione a los nuevos botones
+        document.querySelectorAll('a, .project-card, .skill-tag, .contact-item, .filter-btn').forEach(el => {
             el.addEventListener('mouseenter', () => this.follower.classList.add('grow'));
             el.addEventListener('mouseleave', () => this.follower.classList.remove('grow'));
         });
@@ -60,6 +61,45 @@ class ScrollReveal {
     }
 }
 
+class ProjectFilters {
+    constructor() {
+        this.buttons = document.querySelectorAll('.filter-btn');
+        this.cards = document.querySelectorAll('.project-card');
+        this.init();
+    }
+
+    init() {
+        this.buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Cambiar estado activo de los botones
+                this.buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                this.cards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    
+                    if (filter === 'all' || filter === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.classList.remove('hide');
+                        }, 10);
+                    } else {
+                        card.classList.add('hide');
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 500); // Sincronizado con la transición CSS
+                        
+                        const v = card.querySelector('video');
+                        if(v) v.pause();
+                    }
+                });
+            });
+        });
+    }
+}
+
 class VideoHandler {
     constructor() {
         this.cards = document.querySelectorAll('.project-card');
@@ -71,13 +111,12 @@ class VideoHandler {
             const video = card.querySelector('video');
             if (!video) return;
 
-            // El video solo carga metadatos inicialmente para ahorrar ancho de banda
             video.preload = "metadata";
 
             card.addEventListener('mouseenter', () => {
                 const playPromise = video.play();
                 if (playPromise !== undefined) {
-                    playPromise.catch(() => { /* Evita error de interrupción */ });
+                    playPromise.catch(() => { /* Error ignorado por seguridad */ });
                 }
             });
 
@@ -152,7 +191,7 @@ class TypingEffect {
     }
 }
 
-// Inicialización consolidada
+// Inicialización de la Web Elite
 document.addEventListener('DOMContentLoaded', () => {
     new Cursor();
     new Navbar();
@@ -161,9 +200,10 @@ document.addEventListener('DOMContentLoaded', () => {
     new CardTilt();
     new TypingEffect();
     new VideoHandler();
+    new ProjectFilters(); // <--- Activamos el filtrado
 });
 
-// Deshabilitar zoom táctil
+// Deshabilitar zoom táctil en móviles
 document.addEventListener('touchstart', (e) => {
     if (e.touches.length > 1) e.preventDefault();
 }, { passive: false });
