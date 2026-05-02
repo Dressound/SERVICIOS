@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Full Stack Developer Elite</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="style.js" defer></script>
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Andres Ruilova</div>
+            <ul class="nav-links">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Sobre mí</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">FULL STACK DEVELOPER</div>
+            <h1>Experiencias <span
+                    style="background: linear-gradient(45deg, var(--accent), var(--secondary));-webkit-text-fill-color: transparent;"></span><br>Digitales
+                Épicas</h1>
+            <p class="hero-subtitle">Transformo ideas complejas en aplicaciones web y móviles de alto rendimiento con
+                tecnologías de vanguardia</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="cta-button"><i class="fas fa-rocket"></i> Ver Proyectos</a>
+                <a href="#contact" class="cta-button cta-secondary"><i class="fas fa-message"></i> Contactar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title reveal">Sobre Mi Filosofía</h2>
+            <div class="section-divider reveal"></div>
+            <div class="about-content">
+                <div class="about-text reveal">
+                    <h3>Desarrollo de software Full Stack</h3>
+                    <p>Construyo soluciones escalables que no solo funcionan, sino que <strong>impresionan</strong>. Mi
+                        enfoque combina arquitectura sólida con diseño intuitivo y performance optimizado.</p>
+                    <p>Especializado en arquitecturas modernas, microservicios y aplicaciones en tiempo real. Siempre al
+                        frente de la tecnología.</p>
+                </div>
+                <div class="skills-grid reveal">
+                    <div class="skill-tag">React 18</div>
+                    <div class="skill-tag">Next.js 14</div>
+                    <div class="skill-tag">Node.js</div>
+                    <div class="skill-tag">TypeScript</div>
+                    <div class="skill-tag">Prisma ORM</div>
+                    <div class="skill-tag">PostgreSQL</div>
+                    <div class="skill-tag">Tailwind CSS</div>
+                    <div class="skill-tag">Docker</div>
+                    <div class="skill-tag">AWS</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title reveal">Mis Proyectos Elite</h2>
+            <div class="section-divider reveal"></div>
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <img src="gifs/Portafolio.gif" alt="E-commerce" class="project-gif">
+                    <h3 class="project-title">Portafolio 1</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">Next.js 14</span>
+                        <span class="tech-tag">Stripe</span>
+                        <span class="tech-tag">Prisma</span>
+                        <span class="tech-tag">Tailwind</span>
+                    </div>
+                    <p class="project-description">Plataforma E-Commerce enterprise con checkout optimizado,
+                        recomendaciones IA y panel admin completo. 99.9% uptime.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Código</a>
+                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <img src="gifs/PRESENTACION DE NEGOCIO + PORTAFOLIO.gif" alt="SaaS Dashboard" class="project-gif">
+                    <h3 class="project-title">AdminPro Dashboard</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">React 18</span>
+                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">Socket.io</span>
+                        <span class="tech-tag">TypeScript</span>
+                    </div>
+                    <p class="project-description">Dashboard SaaS en tiempo real con analíticas avanzadas, drag & drop y
+                        notificaciones push. 100K+ usuarios/mes.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Código</a>
+                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <video autoplay loop muted playsinline>
+                        <source src="gifs/presentacion.mp4" type="video/mp4">
+                    </video>
+                    <h3 class="project-title">AI Assistant Pro</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">OpenAI GPT-4</span>
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">Supabase</span>
+                        <span class="tech-tag">WebSockets</span>
+                    </div>
+                    <p class="project-description">Chatbot inteligente multi-idioma con memoria contextual, analíticas y
+                        deployment serverless. 95% accuracy.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Código</a>
+                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <img src="gifs/RITMO URBANO TIENDA DE ZAPATOS.gif" alt="Mobile App" class="project-gif">
+                    <h3 class="project-title">NeoBank Mobile</h3>
+                    <div class="project-tech">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Expo</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">GraphQL</span>
+                    </div>
+                    <p class="project-description">App bancaria nativa con biometría, blockchain y transferencias P2P.
+                        500K+ descargas App Store.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Código</a>
+                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title reveal">Listo Para Colaborar</h2>
+            <div class="section-divider reveal"></div>
+            <div class="contact-content">
+                <p class="reveal"
+                    style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                    ¿Proyecto innovador? ¿Startup en crecimiento? Hagamos algo increíble juntos.
+                </p>
+                <div class="contact-grid">
+                    <div class="contact-item reveal">
+                        <i class="fas fa-envelope contact-icon" style="color: var(--primary);"></i>
+                        <h3>Correo</h3>
+                        <p>tuemail@developer.com</p>
+                    </div>
+                    <div class="contact-item reveal">
+                        <i class="fab fa-linkedin contact-icon" style="color: var(--secondary);"></i>
+                        <h3>LinkedIn</h3>
+                        <p>linkedin.com/in/tunombre</p>
+                    </div>
+                    <div class="contact-item reveal">
+                        <i class="fab fa-github contact-icon" style="color: var(--accent);"></i>
+                        <h3>GitHub</h3>
+                        <p>github.com/tuusuario</p>
+                    </div>
+                    <div class="contact-item reveal">
+                        <i class="fas fa-file-pdf contact-icon" style="color: var(--primary);"></i>
+                        <h3>CV Completo</h3>
+                        <p>Descargar PDF</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
